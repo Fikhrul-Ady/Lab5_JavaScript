@@ -1,0 +1,54 @@
+<!DOCTYPE html> 
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Validasi Form</title>
+    
+    <script>
+        function validateForm() {
+            var nama = document.forms["myForm"]["nama"].value;
+            var email = document.forms["myForm"]["email"].value;
+            var password = document.forms["myForm"]["password"].value;
+
+            if (nama == "") {
+                alert("Nama harus diisi");
+                return false;
+            }
+
+            if (email == "") {
+                alert("Email harus diisi");
+                return false;
+            } else {
+                // Periksa format email dengan regular expression
+                var emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+                if (!email.match(emailPattern)) {
+                    alert("Format email tidak valid");
+                    return false;
+                }
+            }
+
+            if (password == "") {
+                alert("Password harus diisi");
+                return false;
+            }
+
+            return true;
+        }
+    </script>
+</head>
+<body>
+    <form name="myForm" onsubmit="return validateForm()" method="post">
+        <label for="nama">Nama:</label>
+        <input type="text" name="nama"><br><br>
+
+        <label for="email">Email:</label>
+        <input type="text" name="email"><br><br>
+
+        <label for="password">Password:</label>
+        <input type="password" name="password"><br><br>
+
+        <input type="submit" value="Kirim">
+    </form>
+</body>
+</html>
